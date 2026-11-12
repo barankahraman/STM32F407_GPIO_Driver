@@ -1,5 +1,6 @@
 #include "stm32f407xx.h"
 
+
 #define GPIO_PORT_MODE_INPUT    0b00u
 #define GPIO_PORT_MODE_OUTPUT   0b01u
 #define GPIO_PORT_MODE_AF       0b10u
@@ -43,12 +44,12 @@
 
 
 typedef struct{
-    unsigned char pin_no;
-    unsigned char gpio_mode;
-    unsigned char gpio_output_type;
-    unsigned char gpio_output_speed;
-    unsigned char gpio_pull_up_down;
-    unsigned char gpio_alternate_function_no;
+    uint8_t pin_no;
+    uint8_t gpio_mode;
+    uint8_t gpio_output_type;
+    uint8_t gpio_output_speed;
+    uint8_t gpio_pull_up_down;
+    uint8_t gpio_alternate_function_no;
 }GPIO_Specs;
 
 typedef struct{
@@ -60,4 +61,6 @@ typedef struct{
 
 }GPIO_Handle; 
 
-void GPIO_init(GPIO_Handle *port);
+void GPIO_init(GPIO_Handle *port, uint8_t pin_number,
+    uint8_t pin_mode, uint8_t output_type, uint8_t output_speed,
+    uint8_t gpio_pull, uint8_t pin_alternate_func);

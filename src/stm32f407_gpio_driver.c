@@ -1,0 +1,29 @@
+#include "stm32f407_gpio_driver.h"
+#include "stm32f407xx.h"
+
+void GPIO_init(GPIO_Handle *port, uint8_t pin_number,
+    uint8_t pin_mode, uint8_t output_type, uint8_t output_speed,
+    uint8_t gpio_pull, uint8_t pin_alternate_func){
+
+    
+    port -> specs -> pin_no = pin_number;
+    port -> specs -> gpio_mode = pin_mode;
+    port -> specs -> gpio_output_type = output_type;
+    port -> specs -> gpio_output_speed = output_speed;
+    port -> specs -> gpio_pull_up_down = gpio_pull;
+    port -> specs -> gpio_alternate_function_no = pin_alternate_func;
+
+    
+    port -> port_register -> MODER &= ~(1 << (port ->specs ->pin_no));
+    port -> port_register -> MODER |= ((port -> specs ->gpio_mode) << (port->specs->pin_no));
+
+    port -> port_register -> OTYPER &= ~(1 << (port -> specs ->pin_no));
+    port -> port_register -> OTYPER |= ((port->specs->gpio_output_type)<<(port->specs->pin_no));
+
+    port -> port_register -> OSPEEDR &= ~(1 << (port ->specs->pin_no));
+    port -> port_register -> OSPEEDR |= ((port->specs->gpio_output_speed) << (port->specs->pin_no));
+
+
+
+
+}
