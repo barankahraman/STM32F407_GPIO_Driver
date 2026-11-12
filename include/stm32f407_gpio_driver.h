@@ -39,3 +39,25 @@
 #define GPIO_ALTERNATE_FUNC_AF13    0b1101u
 #define GPIO_ALTERNATE_FUNC_AF14    0b1110u
 #define GPIO_ALTERNATE_FUNC_AF15    0b1111u
+
+
+
+typedef struct{
+    unsigned char pin_no;
+    unsigned char gpio_mode;
+    unsigned char gpio_output_type;
+    unsigned char gpio_output_speed;
+    unsigned char gpio_pull_up_down;
+    unsigned char gpio_alternate_function_no;
+}GPIO_Specs;
+
+typedef struct{
+
+    GPIO_TypeDef *port_register;
+
+    GPIO_Specs *specs;
+
+
+}GPIO_Handle; 
+
+void GPIO_init(GPIO_Handle *port);
