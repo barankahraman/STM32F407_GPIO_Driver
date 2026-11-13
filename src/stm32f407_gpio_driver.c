@@ -5,6 +5,19 @@ void GPIO_init(GPIO_Handle *port, uint8_t pin_number,
     uint8_t pin_mode, uint8_t output_type, uint8_t output_speed,
     uint8_t gpio_pull, uint8_t pin_alternate_func){
 
+    uint8_t MASK;
+
+    if(port == GPIOA) MASK = (1u << 0);
+    else if(port == GPIOB) MASK = (1u << 1);
+    else if(port == GPIOB) MASK = (1u << 2);
+    else if(port == GPIOB) MASK = (1u << 3);
+    else if(port == GPIOB) MASK = (1u << 4);
+    else if(port == GPIOB) MASK = (1u << 5);
+    else if(port == GPIOB) MASK = (1u << 6);
+    else if(port == GPIOB) MASK = (1u << 7);
+    else if(port == GPIOB) MASK = (1u << 8);
+
+    RCC -> AHB1ENR |= MASK; 
     
     port -> specs -> pin_no = pin_number;
     port -> specs -> gpio_mode = pin_mode;
@@ -23,7 +36,7 @@ void GPIO_init(GPIO_Handle *port, uint8_t pin_number,
     port -> port_register -> OSPEEDR &= ~(1 << (port ->specs->pin_no));
     port -> port_register -> OSPEEDR |= ((port->specs->gpio_output_speed) << (port->specs->pin_no));
 
-
+    
 
 
 }
